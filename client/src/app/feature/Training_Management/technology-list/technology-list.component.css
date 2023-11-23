@@ -1,0 +1,37 @@
+.modal-header{
+  background-color: #1957A9;
+}
+
+.heading{
+  color: aliceblue;
+}
+
+.btn{
+  background-color: #1957A9;
+  color:#fff;
+  width: 100px;
+}
+
+.modal-body-scroll {
+  max-height: 400px; /* Adjust the max height as per your requirements */
+  overflow-y: auto;
+}
+
+.table{
+  margin-top:-20px;
+}
+
+.btn-light{
+  background-color: #bdbdbd;
+  color:black;
+}
+
+/* .btnn{
+  height: 2.9em;
+  background-color: #1957A9;
+  width: 100px;
+} */
+
+.close:focus {
+  opacity: 1 !important;
+}

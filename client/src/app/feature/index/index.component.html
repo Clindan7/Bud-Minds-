@@ -1,0 +1,12 @@
+<div class="be-wrapper be-collapsible-sidebar be-collapsible-sidebar-hide-logo"
+  [ngClass]="toggle ? 'add be-collapsible-sidebar-collapsed' : ''">
+
+  <app-header (buddySubmit)="updateBuddy($event)"></app-header>
+
+  <app-sidebar></app-sidebar>
+
+  <div class="be-content">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

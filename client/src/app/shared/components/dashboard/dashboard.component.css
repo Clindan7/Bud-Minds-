@@ -1,0 +1,21 @@
+.pointer {
+  cursor: pointer !important;
+}
+
+ul.no-bullets {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.alignn{
+  padding-right: 10%;
+}
+
+.image{
+  height: 200px;
+  width:100px;
+}
+.page-content{
+  padding: 15px 12px 1px;
+}

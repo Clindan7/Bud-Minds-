@@ -1,0 +1,176 @@
+<div class="modal-header modal-header-colored">
+    <h4 class="heading" *ngIf="!updateMode"><strong>Add Score</strong></h4>
+    <h4 class="heading" *ngIf="updateMode"><strong>Update Score</strong></h4>
+    <button
+    type="button"
+    class="close waves-effect waves-light"
+    data-dismiss="modal"
+    aria-label="Close"
+    (click)="close()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
+  <form [formGroup]="valuationForm" autocomplete="off">
+  <div class="modal-body form">
+      
+      <div class="form-group">
+        <label for="qualityOfWork">Quality Of Work<span class="mandatory">*</span></label>
+        <select class="form-select mb-3 dropdownn" formControlName="qualityOfWork">
+          <option *ngIf="!updateMode" disabled selected value="">Select</option>
+          <option value="3">Good</option>
+          <option value="2">Moderate</option>
+          <option value="1">Below Average</option>
+          <option value="0">Bad</option>
+         </select>
+          <h6>
+            <span
+              class="warn-msg mb-8"
+              *ngIf="
+                (valuationForm.get('qualityOfWork')?.invalid &&
+                valuationForm.get('qualityOfWork')?.touched) ||
+                valuationForm.get('qualityOfWork').value == '0'
+              "
+            >
+            Quality Of Work is required</span
+            >
+          </h6>
+        </div>
+
+        <div class="form-group">
+            <label for="extraEffort">Extra Effort<span class="mandatory">*</span></label>
+            <select class="form-select mb-3 dropdownn" formControlName="extraEffort">
+              <option *ngIf="!updateMode" disabled selected value="">Select</option>
+              <option value="2">Yes</option>
+              <option value="1">Do not know</option>
+              <option value="0">No</option>
+             </select>
+              <h6>
+                <span
+                  class="warn-msg mb-8"
+                  *ngIf="
+                    (valuationForm.get('extraEffort')?.invalid &&
+                    valuationForm.get('extraEffort')?.touched) ||
+                    valuationForm.get('extraEffort').value == '0'
+                  "
+                >
+                Quality Of Work is required</span
+                >
+              </h6>
+            </div>
+          
+            <div class="form-group">
+                <label for="enthusiamToLearn">Enthusiam to Learn<span class="mandatory">*</span></label>
+                <select class="form-select mb-3 dropdownn" formControlName="enthusiamToLearn">
+                  <option *ngIf="!updateMode" disabled selected value="">Select</option>
+                  <option value="2">Passionate</option>
+                  <option value="1">Average</option>
+                  <option value="0">Not Passionate</option>
+                 </select>
+                  <h6>
+                    <span
+                      class="warn-msg mb-8"
+                      *ngIf="
+                        (valuationForm.get('enthusiamToLearn')?.invalid &&
+                        valuationForm.get('enthusiamToLearn')?.touched) ||
+                        valuationForm.get('enthusiamToLearn').value == '0'
+                      "
+                    >
+                    Enthusiam To Learn is required</span
+                    >
+                  </h6>
+                </div>
+
+                <div class="form-group">
+                    <label for="adaptability">Adaptability<span class="mandatory">*</span></label>
+                    <select class="form-select mb-3 dropdownn" formControlName="adaptability">
+                      <option *ngIf="!updateMode" disabled selected value="">Select</option>
+                      <option value="2">Impressive</option>
+                      <option value="1">Moderate</option>
+                      <option value="0">Not Impressive</option>
+                     </select>
+                      <h6>
+                        <span
+                          class="warn-msg mb-8"
+                          *ngIf="
+                            (valuationForm.get('adaptability')?.invalid &&
+                            valuationForm.get('adaptability')?.touched) ||
+                            valuationForm.get('adaptability').value == '0'
+                          "
+                        >
+                        Adaptability is required</span
+                        >
+                      </h6>
+                    </div>
+                                     
+                    <div class="form-group">
+                        <label for="teamWork">Team Work<span class="mandatory">*</span></label>
+                        <select class="form-select mb-3 dropdownn" formControlName="teamWork">
+                          <option *ngIf="!updateMode" disabled selected value="">Select</option>
+                          <option value="2">Good</option>
+                          <option value="1">Average</option>
+                          <option value="0">Bad</option>
+                         </select>
+                          <h6>
+                            <span
+                              class="warn-msg mb-8"
+                              *ngIf="
+                                (valuationForm.get('teamWork')?.invalid &&
+                                valuationForm.get('teamWork')?.touched) ||
+                                valuationForm.get('teamWork').value == '0'
+                              "
+                            >
+                            Team Work is required</span
+                            >
+                          </h6>
+                        </div>
+  
+      <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea
+          type="text"
+          id="comment"
+          class="form-control"
+          placeholder="Enter Comment"
+          formControlName="comment"
+          rows="3"
+        ></textarea>
+        <div class="">
+          <h6>
+            <span
+              class="warn-msg"
+              *ngIf="valuationForm.get('comment')?.errors?.['maxlength']"
+              >Maximum allowed character is 2000</span
+            >
+          </h6>
+          <h6>
+            <span
+              class="warn-msg mb-2"
+              *ngIf="valuationForm.get('comment')?.errors?.['pattern']"
+              >White spaces are not allowed as the first and final
+              character for input and not more than one space is
+              allowed between words.</span
+            >
+          </h6>
+        </div>
+      </div>    
+      </div>
+  
+  <div class="modal-footer">
+    <button class="btn modal-close primary-color search-btn-width btn-xl" type="submit"
+      *ngIf="!updateMode"
+      [disabled]="!valuationForm.valid || (submitted)"
+      (click)="createSession()"
+    >
+      Add
+    </button>
+    <button class="btn modal-close primary-color search-btn-width btn-xl" type="submit"
+      *ngIf="updateMode"
+      [disabled]="!valuationForm.valid || (submitted) "
+      (click)="updateSession()"
+    >
+      Update
+    </button>
+  </div>
+  </form>
+  

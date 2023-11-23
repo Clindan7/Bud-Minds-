@@ -1,0 +1,175 @@
+<div class="modal-header modal-header-colored">
+    <h4 class="heading" *ngIf="!updateMode"><strong>Create Subtask</strong></h4>
+    <h4 class="heading" *ngIf="updateMode"><strong>Edit Subtask</strong></h4>
+    <button
+    type="button"
+    class="close waves-effect waves-light"
+    data-dismiss="modal"
+    aria-label="Close"
+    (click)="close()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
+  <form [formGroup]="TaskForm" autocomplete="off">
+  <div class="modal-body form">
+    <div class="form-group">
+      <label for="batch">Task<span class="mandatory">*</span></label>
+      <select class="form-select mb-3 dropdownn" formControlName="taskName" (focus)="onInputFocus($event)" (blur)="onInputBlur($event)" (change)="getStartandEndDate()">
+        <option *ngIf="!updateMode"   disabled selected value="">
+          Select Task
+        </option>
+        <ng-container *ngFor="let task of tasks"
+        >
+        <option *ngIf="checkEndDateBefore(task.taskEnd)" value="{{ task.taskId }}"
+        >
+          {{ task.taskName }}
+        </option>
+      </ng-container>
+      </select>
+        <h6>
+          <span
+            class="warn-msg mb-8"
+            *ngIf="
+              (TaskForm.get('taskName')?.invalid &&
+              TaskForm.get('taskName')?.touched) ||
+              TaskForm.get('taskName').value == '0'
+            "
+          >
+          Task is required</span
+          >
+        </h6>
+      </div>
+
+      <div class="form-group">
+        <label for="subtaskName">Subtask name<span class="mandatory">*</span></label>
+        <input
+          type="text"
+          id="subtaskName"
+          class="form-control"
+          placeholder="Enter name"
+          formControlName="subtaskName"
+        />
+        <div class="">
+          <h6>
+            <span
+              class="warn-msg mb-2"
+              *ngIf="TaskForm.get('subtaskName')?.touched &&
+              TaskForm.get('subtaskName')?.errors?.['required']"
+              >Subtask name is required</span
+            >
+          </h6>
+          <h6>
+            <span
+              class="warn-msg"
+              *ngIf="TaskForm.get('subtaskName')?.errors?.['maxlength']"
+              >Maximum allowed character is 50</span
+            >
+          </h6>
+          <h6>
+            <span
+              class="warn-msg mb-2"
+              *ngIf="TaskForm.get('subtaskName')?.errors?.['pattern']"
+              >White spaces are not allowed as the first and final
+              character for input and not more than one space is
+              allowed between words.</span
+            >
+          </h6>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="subtaskDescription">Description<span class="mandatory">*</span></label>
+        <textarea
+          type="text"
+          id="subtaskDescription"
+          class="form-control"
+          placeholder="Enter Description"
+          formControlName="subtaskDescription"
+          rows="3"
+          >
+        </textarea>
+        <div class="">
+          <h6>
+            <span
+              class="warn-msg mb-2"
+              *ngIf="TaskForm.get('subtaskDescription')?.touched &&
+              TaskForm.get('subtaskDescription')?.errors?.['required']"
+              >Subtask description is required</span
+            >
+          </h6>
+          <h6>
+            <span
+              class="warn-msg"
+              *ngIf="TaskForm.get('subtaskDescription')?.errors?.['maxlength']"
+              >Maximum allowed character is 250</span
+            >
+          </h6>
+          <h6>
+            <span
+              class="warn-msg mb-2"
+              *ngIf="TaskForm.get('subtaskDescription')?.errors?.['pattern']"
+              >White spaces are not allowed as the first and final
+              character for input and not more than one space is
+              allowed between words.</span
+            >
+          </h6>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="taskStart">Start Date<span class="mandatory">*</span></label>
+        <input
+          autocomplete="off"
+          class="form-control date"
+          name="taskStart"
+          formControlName="taskStart"
+          placeholder="Enter Start Date"
+          #dp="bsDatepicker"
+          bsDatepicker
+          [(bsValue)]="taskStart"
+          [bsConfig]="{ isAnimated: true,dateInputFormat: 'YYYY-MM-DD', showWeekNumbers: false , selectFromOtherMonth: true }"
+          [minDate]="minDate"
+          [maxDate]="maxDate"
+          (keydown)="$event.preventDefault()"
+          (bsValueChange)="start()"
+        />
+      </div>
+      <!-- <ngb-timepicker  ></ngb-timepicker> -->
+      <div class="form-group">
+        <label for="year">End Date<span class="mandatory">*</span></label>
+        <input
+        autocomplete="off"
+        class="form-control date"
+        name="taskEnd"
+        formControlName="taskEnd"
+        placeholder="Enter End Date"
+        #dp="bsDatepicker"
+        bsDatepicker
+        [(bsValue)]="taskEnd"
+        [bsConfig]="{ isAnimated: true,dateInputFormat: 'YYYY-MM-DD', showWeekNumbers: false , selectFromOtherMonth: true }"
+        [minDate]="taskStart"
+        [maxDate]="maxDate"
+        (keydown)="$event.preventDefault()"
+      />
+    </div>
+      </div>
+  
+  <div class="modal-footer">
+    <button class="btn modal-close primary-color search-btn-width btn-xl" type="submit"
+    *ngIf="!updateMode"
+    (click)="createTask()"
+    [disabled]="!TaskForm.valid || (submitted)"
+    >
+      Add
+    </button>
+    <button class="btn modal-close primary-color search-btn-width btn-xl" type="submit"
+      *ngIf="updateMode"
+      [disabled]="!TaskForm.valid || (submitted) "
+      (click)="updateTask()"
+    >
+      Update
+    </button>
+  </div>
+  </form>
+  

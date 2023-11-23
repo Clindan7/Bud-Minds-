@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card card-border-color card-border-color-primary">
+
+      <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+        <ngb-panel id="ngb-panel-0">
+          <ng-template ngbPanelTitle class="card-header" id="headingOne">
+            <div class="title" style="font-size: 18px; font-weight: 300; color: #404040;">Filters</div>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <div class="card-body" [formGroup]="searchFirstName">
+              <div class="form-group row pt-1 pb-1">
+                <div class="row col-12">
+                  <div class="col-lg-5">
+                    <div>
+                      <label class="name" for="inputEmail">Employee ID</label>
+
+                      <input formControlName="employeeId" type="text" class="form-control" maxlength="10"
+                      id="search" placeholder="Enter Employee ID" (keypress)="omit_special_char($event)">
+                      <div class="x">
+                        <em aria-label="Close" class="material-icons" *ngIf="searchFirstName.value.employeeId"
+                          (click)="clearSearchTerm()">close</em>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="col-lg-5">
+                    <div class="form-group">
+                      <label class="name" for="inputEmail">Employee Name</label>
+                      <ng-autocomplete #ngAutoCompleteStatic [data]="user1" formControlName="name" [initialValue]=""
+                      placeholder="Enter Employee name" [searchKeyword]="keyword"
+                      notFoundText="Not found"
+                      [itemTemplate]="itemTemplateStatic" [notFoundTemplate]="notFoundTemplate">
+                    </ng-autocomplete>
+
+                    <ng-template #itemTemplateStatic let-item>
+                      <a [innerHTML]="item"></a>
+                    </ng-template>
+
+                    <ng-template #notFoundTemplate let-notFound>
+                      <div [innerHTML]="notFound"></div>
+                    </ng-template>
+                    </div>
+                  </div>
+                  <div class="col-lg-2">
+                    <div class="form-group search-btn-margin-top">
+                      <button class="btn primary-color search-btn-width btn-xl" (click)="search(searchFirstName)">
+                        <i class="icon icon-left zmdi zmdi-search"></i>
+                        Search
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+    </div>
+  </div>
+</div>

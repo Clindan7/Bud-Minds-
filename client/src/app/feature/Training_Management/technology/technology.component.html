@@ -1,0 +1,65 @@
+<div class="modal-header modal-header-colored">
+  <h4 class="heading"><strong>Create Technology</strong></h4>
+  <button
+  type="button"
+  class="close waves-effect waves-light"
+  data-dismiss="modal"
+  aria-label="Close"
+  (click)="activeModal.close()"
+>
+  <span aria-hidden="true">&times;</span>
+</button>
+</div>
+<form [formGroup]="technologyForm" autocomplete="off">
+<div class="modal-body form">
+
+    <div class="form-group pt-2">
+      <label for="technologyName">Technology Name<span class="mandatory">*</span></label>
+      <input
+        type="text"
+        id="technologyName"
+        class="form-control"
+        placeholder="Enter Technology Name"
+        formControlName="technologyName"
+      />
+      <div class="invalid-feedback"
+                                        *ngIf="technologyForm.get('technologyName').invalid && (technologyForm.get('technologyName')?.touched || technologyForm.get('technologyName')?.dirty)">
+                                        <h6>
+                                            <span class="warn-msg"
+                                                *ngIf="technologyForm.get('technologyName')?.errors?.['required']">Technology Name is
+                                                required</span>
+                                            <span class="warn-msg"
+                                                *ngIf="technologyForm.get('technologyName')?.errors?.['pattern']">Only alphabets
+                                                and white spaces are allowed and white spaces are not allowed as the
+                                                first and final character for input and not more than one space is
+                                                allowed between words.</span>
+                                            <span class="warn-msg"
+                                                *ngIf="technologyForm.get('technologyName')?.errors?.['maxlength']">Maximum
+                                                allowed character is 50</span>
+                                        </h6>
+                                    </div>
+    </div>
+
+
+    </div>
+
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="button btn btn-outline-primary waves-effect  waves-light"
+        data-dismiss="modal"
+        (click)="activeModal.close()"
+      >
+        Close
+      </button>
+      <button
+        type="submit"
+        [disabled]="!technologyForm.valid"
+        class="button-add btn waves-effect waves-light"
+        (click)="createTechnology()"
+      >
+        Add
+      </button>
+
+    </div>
+</form>

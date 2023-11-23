@@ -1,0 +1,92 @@
+<div class="be-left-sidebar" *ngIf="user?.status==1">
+  <div class="left-sidebar-wrapper">
+    <a class="left-sidebar-toggle pointer" (click)="onHandleCollapse()">Collapsible
+      Sidebar</a>
+    <div class="left-sidebar-spacer" [ngClass]="collapse ? 'open' : '' ">
+      <div class="left-sidebar-scroll">
+        <div class="left-sidebar-content">
+          <ul class="sidebar-elements pointer">
+
+            <li class="divider"></li>
+            <li><a class ="dashboard" routerLink="dashboard" [class.disabled]="user?.status==0 || user?.status==2 ? true : null"><i routerLinkActive="active" class="icon mdi mdi-home"></i><span class="dash" routerLinkActive="active">Dashboard</span></a></li>
+            <li  *ngIf="user?.userRole==4"><a class ="training-session" [routerLink]="['trainee_session']"><i routerLinkActive="active" class="icon zmdi zmdi-book"></i><span class="dash" routerLinkActive="active">My Trainings</span></a></li>
+            <li  *ngIf="user?.userRole==4"><a class ="training-task" [routerLink]="['trainee_task']"><i routerLinkActive="active" class="icon zmdi zmdi-receipt"></i><span class="dash" routerLinkActive="active">My Task</span></a></li>
+            <ngb-accordion [class.disabled]="user?.status==0 || user?.status==2 ? true : null">
+              <ngb-panel *ngIf="(user?.userRole==0 || user?.userRole==1 || user?.userRole==2 || user?.userRole==3)"ngbPanelTitle="'Account Management'" ngbPanelId="'account'">
+                <ng-template class="side" ngbPanelTitle>
+                  <em class="icon mdi mdi-face"></em>
+                  <span class="parent">Account Management</span>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <ul class="sub-menu no-bullets">
+                    <li *ngIf="user?.userRole==0"><a class="sub" [routerLink]="['managers']" routerLinkActive="active">Manager Management</a></li>
+                    <li *ngIf="(user?.userRole==0 || user?.userRole==1)"><a class="sub" [routerLink]="['mentors']" routerLinkActive="active">Mentor Management</a></li>
+                    <li *ngIf="(user?.userRole==0 || user?.userRole==1 || user?.userRole==2)"><a class="sub" [routerLink]="['trainers']" routerLinkActive="active">Trainer Management</a></li>
+                    <li *ngIf="(user?.userRole==0 || user?.userRole==1 || user?.userRole==2 || user?.userRole==3)"><a class="sub" [routerLink]="['trainees']" routerLinkActive="active">Trainee Management</a></li>
+                  </ul>
+                </ng-template>
+              </ngb-panel>
+
+              <ngb-panel *ngIf="(user?.userRole==0 || user?.userRole==1 || user?.userRole==2)" ngbPanelTitle="'Onboardings'" ngbPanelId="'onboardings'">
+                <ng-template class="side" ngbPanelTitle>
+                  <i class="icon mdi mdi-chart-donut"></i>
+                  <span class="parent">Onboardings</span>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <ul class="sub-menu no-bullets">
+                    <li *ngIf="(user?.userRole==0 || user?.userRole==1 || user?.userRole==2)"><a class="sub" [routerLink]="['batches']" routerLinkActive="active">Batch Management</a></li>
+                    <li *ngIf="(user?.userRole==0 || user?.userRole==1 || user?.userRole==2)"><a class="sub" [routerLink]="['groups']" routerLinkActive="active">Group Management</a></li>
+                  </ul>
+                </ng-template>
+              </ngb-panel>
+
+              <ngb-panel *ngIf="(user?.userRole==0 || user?.userRole==1 || user?.userRole==2 || user?.userRole==3)" ngbPanelTitle="'Trainings'" ngbPanelId="'trainings'">
+                <ng-template ngbPanelTitle>
+                  <i class="icon mdi mdi-dot-circle"></i>
+                  <span class="parent">Trainings</span>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <ul class="sub-menu no-bullets">
+                    <li *ngIf="(user?.userRole==0 || user?.userRole==1 || user?.userRole==2 || user?.userRole==3)"><a class="sub" [routerLink]="['training']" routerLinkActive="active">Training Management</a></li>
+                    <li *ngIf="(user?.userRole==0 || user?.userRole==1 || user?.userRole==2 || user?.userRole==3)"><a class="sub" [routerLink]="['session']" routerLinkActive="active">Session Management</a></li>
+                    <li *ngIf="(user?.userRole==0 || user?.userRole==1 || user?.userRole==2 || user?.userRole==3)"><a class="sub" [routerLink]="['task']" routerLinkActive="active">Task Management</a></li>
+                    <!-- <li><a class="sub">Session Management</a></li>
+                    <li><a class="sub">Task Management</a></li> -->
+                  </ul>
+                </ng-template>
+              </ngb-panel>
+
+              <!-- <ngb-panel ngbPanelTitle="'Valuation'" ngbPanelId="'valuation'">
+                <ng-template ngbPanelTitle>
+                  <i class="icon mdi mdi-border-all"></i>
+                  <span class="parent">Valuation</span>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <ul class="sub-menu no-bullets">
+                    <li><a class="sub">Task Valuation</a></li>
+                    <li><a class="sub">Performance Valuation</a></li>
+                  </ul>
+                </ng-template>
+              </ngb-panel>
+
+              <ngb-panel ngbPanelTitle="'Feedbacks'" ngbPanelId="'feedbacks'">
+                <ng-template ngbPanelTitle>
+                  <i class="icon mdi mdi-inbox"></i>
+                  <span class="parent">Feedbacks</span>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <ul class="sub-menu no-bullets">
+                    <li><a class="sub">Add Feedback</a></li>
+                  </ul>
+                </ng-template>
+              </ngb-panel>
+
+              <li><a href="#"><i class="icon mdi mdi-layers"></i><span class="parent">Report</span></a></li> -->
+            </ngb-accordion>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

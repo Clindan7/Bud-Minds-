@@ -1,0 +1,219 @@
+<div class="modal-header modal-header-colored">
+  <h4 class="heading" *ngIf="!updateMode"><strong>Create Training</strong></h4>
+  <h4 class="heading" *ngIf="updateMode"><strong>Edit Training</strong></h4>
+  <button
+  type="button"
+  class="close waves-effect waves-light"
+  data-dismiss="modal"
+  aria-label="Close"
+  (click)="close()"
+>
+  <span aria-hidden="true">&times;</span>
+</button>
+</div>
+<form [formGroup]="trainingForm" autocomplete="off">
+<div class="modal-body form">
+
+    <div class="form-group">
+      <label for="title">Title<span class="mandatory">*</span></label>
+      <input
+        type="text"
+        id="title"
+        class="form-control"
+        placeholder="Enter title"
+        formControlName="title"
+      />
+      <div class="">
+        <h6>
+          <span
+            class="warn-msg mb-2"
+            *ngIf="trainingForm.get('title')?.touched &&
+            trainingForm.get('title')?.errors?.['required']"
+            >Title is required</span
+          >
+        </h6>
+        <h6>
+          <span
+            class="warn-msg"
+            *ngIf="trainingForm.get('title')?.errors?.['maxlength']"
+            >Maximum allowed character is 50</span
+          >
+        </h6>
+        <h6>
+          <span
+            class="warn-msg mb-2"
+            *ngIf="trainingForm.get('title')?.errors?.['pattern']"
+            >White spaces are not allowed as the first and final
+            character for input and not more than one space is
+            allowed between words.</span
+          >
+        </h6>
+      </div>
+    </div>
+
+    <!-- <div class="input-group">
+			<input
+				class="form-control"
+				placeholder="yyyy-mm-dd"
+				name="dp"
+				[(ngModel)]="model"
+				ngbDatepicker
+				#d="ngbDatepicker"
+			/>
+			<button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
+		</div> -->
+
+
+    <div class="form-group">
+      <label for="trainingDescription">Description</label>
+      <textarea
+        type="text"
+        id="trainingDescription"
+        class="form-control"
+        placeholder="Enter Description"
+        rows="3"
+        formControlName="trainingDescription"
+      ></textarea>
+      <div class="">
+        <h6>
+          <span
+            class="warn-msg"
+            *ngIf="trainingForm.get('trainingDescription')?.errors?.['maxlength']"
+            >Maximum allowed character is 250</span
+          >
+        </h6>
+        <h6>
+          <span
+            class="warn-msg mb-2"
+            *ngIf="trainingForm.get('trainingDescription')?.errors?.['pattern']"
+            >White spaces are not allowed as the first and final
+            character for input and not more than one space is
+            allowed between words.</span
+          >
+        </h6>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="trainingStartDate">Start Date<span class="mandatory">*</span></label>
+      <input
+        autocomplete="off"
+        class="form-control"
+        name="trainingStartDate"
+        formControlName="trainingStartDate"
+        placeholder="Enter Start Date"
+        #dp="bsDatepicker"
+        bsDatepicker
+        [(bsValue)]="trainingStartDate"
+        [bsConfig]="{ isAnimated: true,dateInputFormat: 'YYYY-MM-DD', showWeekNumbers: false , selectFromOtherMonth: true }"
+        [minDate]="minDate"
+        (keydown)="$event.preventDefault()"
+        (bsValueChange)="start()"
+      />
+      <div class="">
+        <h6>
+          <span
+            class="warn-msg mb-2"
+            *ngIf="trainingForm.get('trainingStartDate').invalid && (trainingForm.get('trainingStartDate')?.touched ||
+            trainingForm.get('trainingStartDate')?.dirty)
+            ||  trainingForm.get('trainingStartDate').value == '0'"
+            >Start Date is required</span
+          >
+        </h6>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="year">End Date<span class="mandatory">*</span></label>
+      <input
+      autocomplete="off"
+      class="form-control"
+      name="trainingEndDate"
+      formControlName="trainingEndDate"
+      placeholder="Enter End Date"
+      #dp="bsDatepicker"
+      bsDatepicker
+      [(bsValue)]="trainingEndDate"
+      [bsConfig]="{ isAnimated: true,dateInputFormat: 'YYYY-MM-DD', showWeekNumbers: false , selectFromOtherMonth: true}"
+      [minDate]="trainingStartDate"
+      (keydown)="$event.preventDefault()"
+    />
+    <div class="">
+      <h6>
+        <span
+          class="warn-msg mb-2"
+          *ngIf="trainingForm.get('trainingEndDate').invalid && (trainingForm.get('trainingEndDate')?.touched ||
+          trainingForm.get('trainingEndDate')?.dirty)
+          ||  trainingForm.get('trainingEndDate').value == '0'"
+          >End Date is required</span
+        >
+      </h6>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="technology">Technology<span class="mandatory">*</span></label>
+    <div class="input-group">
+      <select class="form-select dropdownn width" formControlName="technology" (focus)="onInputFocus($event)"
+      (blur)="onInputBlur($event)">
+        <option *ngIf="!updateMode&&!isNewTech" disabled selected value="">Select Technology</option>
+        <option *ngIf="isNewTech"  value="{{technologies[index]?.technologyId}}">{{technologies[index]?.technologyName}}</option>
+        <option *ngFor="let technology of technologies" value="{{ technology.technologyId }}">{{ technology.technologyName }}</option>
+      </select>
+      <div *ngIf="(user?.userRole==0 || user?.userRole==1)" class="input-group-append">
+
+        <div class="link" (click)="openCreateModal()">
+          <span class="icon zmdi zmdi-plus-circle-o"></span>
+        </div>
+
+      </div>
+      <h6>
+        <span class="warn-msg mb-7" *ngIf="(trainingForm.get('technology')?.invalid && trainingForm.get('technology')?.touched) || trainingForm.get('technology').value == '0'">Technology is required</span>
+      </h6>
+
+    </div>
+  </div>
+
+
+    <div class="form-group">
+      <label for="department">Department<span class="mandatory">*</span></label>
+      <select class="form-select mb-3 dropdownn" formControlName="department" (focus)="onInputFocus($event)"
+      (blur)="onInputBlur($event)">
+        <option *ngIf="!updateMode" disabled selected value="">
+          Select Department
+        </option>
+        <option value="1">Software</option>
+        <option value="2">QA</option>
+      </select>
+        <h6>
+          <span
+            class="warn-msg mb-8"
+            *ngIf="
+              (trainingForm.get('department')?.invalid &&
+              trainingForm.get('department')?.touched) ||
+              trainingForm.get('department').value == '0'
+            "
+          >
+          Department is required</span
+          >
+        </h6>
+      </div>
+    </div>
+
+<div class="modal-footer">
+  <button class="btn modal-close primary-color search-btn-width btn-xl" type="submit"
+    *ngIf="!updateMode"
+    [disabled]="!trainingForm.valid || (submitted)"
+    (click)="createTraining()"
+  >
+    Add
+  </button>
+  <button class="btn modal-close primary-color search-btn-width btn-xl" type="submit"
+    *ngIf="updateMode"
+    [disabled]="!trainingForm.valid || (submitted) || minDate > trainingStartDate"
+    (click)="updateTraining()"
+  >
+    Update
+  </button>
+</div>
+</form>

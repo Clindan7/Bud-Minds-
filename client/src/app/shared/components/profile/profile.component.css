@@ -1,0 +1,37 @@
+.invalid-feedback {
+  display: block !important;
+}
+
+.warn-msg {
+  color: #d93a40;
+}
+
+.pointer {
+  cursor: pointer !important;
+}
+
+ul.no-bullets {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.alignn{
+  padding-right: 10%;
+}
+
+.page-content{
+  /* padding: calc(70px + 8px) calc(24px / 2) 8px calc(-341px / 2); */
+  padding: 10px 12px 1px;
+  }
+
+  .col-xl-6{
+    margin-top: -15px;
+  }
+
+  .btn{
+    background-color: #1957A9;
+    color:#fff;
+    height: 2.9em;
+    width: 150px;
+  }

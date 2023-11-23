@@ -1,0 +1,20 @@
+.profile-name{
+  display: block;
+  font-size: 1.25rem;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #fff;
+}
+
+.pointer {
+  cursor: pointer !important;
+}
+.logo-img{
+  padding-top: 10px;
+}
+
+.dropdown-item{
+  font-size: 14px;
+}

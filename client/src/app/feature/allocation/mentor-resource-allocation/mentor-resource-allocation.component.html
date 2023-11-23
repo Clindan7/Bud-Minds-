@@ -1,0 +1,36 @@
+<!-- <app-header-sidebar></app-header-sidebar> -->
+
+
+<div class="main-content">
+  <div class="page-content">
+    <div class="breadcrum">
+      <div>
+      <h4 class="mr-10">Resource allocation to Mentor</h4>
+      </div>
+      <div class="page-title-right">
+        <ol class="breadcrumb m-0 crumclass">
+            <li class="breadcrumb-item"><a [routerLink]="['/mentor_list']">Mentor List</a></li>
+            <li class="breadcrumb-item active">Resource allocation to Mentor</li>
+        </ol>
+     </div>
+    </div>
+    <div class="container-fluid" role="document">
+
+      <div class="modal-content">
+        <div class="modal-body">
+          <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+            <li [ngbNavItem]="1">
+              <a ngbNavLink>
+                <h5>Trainees</h5>
+              </a>
+              <ng-template ngbNavContent>
+                <app-trainee-to-mentor></app-trainee-to-mentor>
+              </ng-template>
+            </li>
+          </ul>
+          <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

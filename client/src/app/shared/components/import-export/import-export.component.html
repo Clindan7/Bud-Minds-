@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-12 col-lg-12">
+    <div class="accordion" id="accordion">
+      <div class="card card-border-color card-border-color-primary">
+        <ngb-accordion #acc="ngbAccordion">
+          <ngb-panel>
+            <ng-template ngbPanelTitle class="card-header" id="headingOne">
+              <div *ngIf="userrole === 1" class="title" style="font-size: 18px; font-weight: 300; color: #404040;">Import/ Export Managers</div>
+              <div *ngIf="userrole === 2" class="title" style="font-size: 18px; font-weight: 300; color: #404040;">Import/ Export Mentors</div>
+              <div *ngIf="userrole === 3" class="title" style="font-size: 18px; font-weight: 300; color: #404040;">Import/ Export Trainers</div>
+              <div *ngIf="userrole === 4" class="title" style="font-size: 18px; font-weight: 300; color: #404040;">Import/ Export Trainees</div>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <div class="card-body">
+                <div class="row" style="border: 2px dashed #c3c3c3;">
+                  <div class="col-lg-6">
+                    <div class="dropzone dz-clickable" id="my-awesome-dropzone"
+                      (drop)="onFileDropped($event)" (dragover)="onDragOver($event)">
+                      <div class="dz-message text-center pointer dropzone">
+                        <div class="icon upload" (click)="fileInput.click()"><span class="zmdi zmdi-cloud-upload"></span></div>
+                        <h3>Upload CSV File</h3>
+                        <div class="drag-drop-area" (drop)="onFileDropped($event)" (dragover)="onDragOver($event)">
+                          <p>Drag and drop a CSV file here</p>
+                        </div>
+
+                        <button class="btnn btn-primary primary-color search-btn-width btn-xl" (click)="sampleDoc()">Download Demo CSV</button>
+
+                        <input #fileInput type="file" (change)="onFileSelected($event)" style="display: none;">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <form class="dropzone dz-clickable" id="my-awesome-dropzone">
+                      <div class="dz-message text-center pointer">
+                        <div class="icon export" (click)="exportCSV()"><span class="zmdi zmdi-cloud-download"></span></div>
+                        <h3>Download CSV</h3>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+      </div>
+    </div>
+  </div>
+</div>

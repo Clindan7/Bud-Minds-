@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand fixed-top be-top-header" *ngIf="user?.status!=0 || user?.status!=2">
+  <div class="container-fluid">
+    <div class="be-navbar-header">
+      <a class="be-toggle-left-sidebar" (click)="onHandleToggle()">
+        <span class="icon zmdi zmdi-menu pointer"></span></a>
+        <img class="logo-img" src="assets/img/buddy-inno-logo-white-07.png" alt="logo"
+                width="200" height="50" [routerLink]="['/dashboard']">
+    </div>
+    <div class="be-right-navbar">
+      <ul class="nav navbar-nav float-right be-user-nav">
+        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button"
+            aria-expanded="false">
+          <span class="profile-name">{{user?.firstName}} <span class="icon zmdi zmdi-chevron-down"></span></span></a>
+          <div class="dropdown-menu" role="menu">
+            <div class="user-info">
+              <div class="user-name">{{user?.firstName}}</div>
+            </div><a class="dropdown-item" [routerLink]="['/profile']" [class.disabled]="user?.status==0 || user?.status==2 ? true : null">Profile</a>
+                <a class="dropdown-item" [routerLink]="['/change_password']">Change Password</a>
+                <a class="dropdown-item pointer" (click)="logout()">Logout</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

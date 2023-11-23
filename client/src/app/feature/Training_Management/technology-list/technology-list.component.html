@@ -1,0 +1,49 @@
+<div class="modal-header modal-header-colored">
+  <h4 class="heading"><strong>Technology List</strong></h4>
+  <button
+  type="button"
+  class="close waves-effect waves-light"
+  data-dismiss="modal"
+  aria-label="Close"
+  (click)="activeModal.close()"
+>
+  <span aria-hidden="true">&times;</span>
+</button>
+</div>
+
+<div class="modal-body">
+  <div class="row">
+    <div class="col-12 col-lg-12">
+      <div class="card card-table">
+        <div class="card-body table-responsive noSwipe modal-body-scroll">
+          <table class="table table-striped table-hover" aria-describedby="table">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody *ngIf="technologyData?.length">
+              <tr *ngFor="let val of technologyData">
+                <td>{{ val.technologyName }}</td>
+                <td class="actions">
+                  <div class="tools dropdown">
+                    <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                      <span class="icon zmdi zmdi-more"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right pointer" role="menu">
+                    <a class="dropdown-item" (click)="deleteTechnologyDetails(val.technologyId)">Delete</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary primary-color search-btn-width btn-xl" (click)="openCreateModal()"><strong>Create</strong></button>
+</div>

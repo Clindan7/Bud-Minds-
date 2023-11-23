@@ -1,0 +1,36 @@
+    <div class="modal-header modal-header-colored">
+      <h4 class="heading"><strong>Groups under {{ batches?.joinerBatchName }}</strong></h4>
+      <button
+        type="button"
+        class="close waves-effect waves-light"
+        data-dismiss="modal"
+        aria-label="Close"
+        (click)="activeModal.close('cancel')"
+      >
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body form">
+      <div *ngIf="groupLength != 0">
+        <div class="row" *ngFor="let val of groups">
+          <div id="list-example" class="list-group">
+            <a class="list-group-item mb-2">{{ val.joinerGroupName }}</a>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="groupLength === 0">
+        <em class="fa-1x">No Groups Found </em>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="button btn waves-effect  waves-light"
+        data-dismiss="modal"
+        aria-label="Close"
+        (click)="activeModal.close('confirm')"
+      >
+        Close
+      </button>
+    </div>
+

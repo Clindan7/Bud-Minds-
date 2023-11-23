@@ -1,0 +1,90 @@
+.modal-header{
+  background-color: #1957A9;
+}
+
+.heading{
+  color: aliceblue;
+}
+
+.mandatory{
+  color:red;
+}
+
+.warn-msg {
+  display:block;
+  color: #ff0008;
+  margin-bottom: 10px;
+}
+
+.dropdownn{
+  border-width: 1px;
+/* border-top-color: #bdc0c7; */
+box-shadow: none;
+padding: 10px 12px;
+transition: none;
+height: 3.692rem;
+color: rgb(64, 64, 64);
+}
+
+.btn{
+  background-color: #1957A9;
+  color:white;
+  width: 100px;
+}
+
+.btnn{
+  background-color: #1957A9;
+  width: 100px;
+}
+
+.link{
+  cursor: pointer;
+  color:#014379;
+}
+
+.icon {
+  padding-left: 20px;
+  font-size: 1.615rem;
+}
+
+.input-group {
+  align-items: center;
+}
+
+.width{
+  width:90% !important
+}
+
+.modal-body-scroll {
+  max-height: 400px; /* Adjust the max height as per your requirements */
+  overflow-y: auto;
+}
+
+.dropdown-menu{
+  cursor: pointer;
+}
+
+.selected-input {
+  outline: none;
+  border: 1px solid #347ddd;
+}
+
+.form-select ::selection{
+  border-color: #1957A9;
+}
+
+.close:focus {
+  opacity: 1 !important;
+}
+
+.form-select{
+  font-size: 12px;
+}
+
+.form-control{
+  font-size: 12px;
+}
+
+.disable-scroll {
+  overflow: hidden;
+}

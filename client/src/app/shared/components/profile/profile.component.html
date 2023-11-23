@@ -1,0 +1,88 @@
+<div class="page-head">
+  <h2 class="page-head-title">Profile</h2>
+</div>
+
+
+<div class="main-content container-fluid">
+
+  <div class="row">
+    <div class="col-xl-6">
+      <div class="card">
+          <div class="card-body">
+              <p class="card-subtitle mb-4"></p>
+
+              <form [formGroup]="updateForm">
+                  <div class="form-group">
+                      <label for="firstName">First Name:</label>
+                      <input type="text" id="firstName" class="form-control" formControlName="firstName"
+                          [readonly]="!updateMode">
+                      <div class="invalid-feedback"
+                          *ngIf="updateForm.get('firstName').invalid && (updateForm.get('firstName')?.touched || updateForm.get('firstName')?.dirty)">
+                          <h6>
+                              <span class="warn-msg"
+                                  *ngIf="updateForm.get('firstName')?.errors?.['required']">First Name is
+                                  required</span>
+                              <span class="warn-msg"
+                                  *ngIf="updateForm.get('firstName')?.errors?.['pattern']">Only alphabets
+                                  and white spaces are allowed and white spaces are not allowed as the
+                                  first and final character for input and not more than one space is
+                                  allowed between words.</span>
+                              <span class="warn-msg"
+                                  *ngIf="updateForm.get('firstName')?.errors?.['maxlength']">Maximum
+                                  allowed character is 50</span>
+                          </h6>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="lastName">Last Name:</label>
+                      <input type="text" id="lastName" class="form-control" formControlName="lastName"
+                          [readonly]="!updateMode">
+                      <div class="invalid-feedback"
+                          *ngIf="updateForm.get('lastName').invalid && (updateForm.get('lastName')?.touched || updateForm.get('lastName')?.dirty)">
+                          <h6>
+                              <span class="warn-msg"
+                                  *ngIf="updateForm.get('lastName')?.errors?.['required']">Last Name is
+                                  required</span>
+                              <span class="warn-msg"
+                                  *ngIf="updateForm.get('lastName')?.errors?.['pattern']">Only alphabets
+                                  and white spaces are allowed and white spaces are not allowed as the
+                                  first and final character for input and not more than one space is
+                                  allowed between words.</span>
+                              <span class="warn-msg"
+                                  *ngIf="updateForm.get('lastName')?.errors?.['maxlength']">Maximum
+                                  allowed character is 20</span>
+                          </h6>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="example-static">Email:</label>
+                      <input type="text" readonly class="form-control-plaintext" id="example-static"
+                          value="{{user?.email}}">
+                  </div>
+                  <div class="form-group">
+                      <label for="simpleinput">Employee ID:</label>
+                      <input type="text" readonly class="form-control-plaintext" id="example-static"
+                          value="{{user?.employeeId}}">
+                  </div>
+                  <button type="button" *ngIf="updateMode==false" (click)="updateMode=!updateMode"
+                      class="btn btn-primary waves-effect waves-light">Update</button>
+                  <button type="submit" *ngIf="updateMode==true" [disabled]="submitted"
+                      class="btn btn-primary waves-effect waves-light" (click)="updateProfile()">Save
+                      Changes</button>
+              </form>
+          </div>
+          <!-- end card-body-->
+      </div>
+      <!-- end card -->
+  </div>
+
+  </div>
+
+</div>
+
+<!-- Overlay -->
+<div class="modal-overlay"></div>
+
+

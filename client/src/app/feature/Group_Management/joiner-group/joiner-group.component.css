@@ -1,0 +1,51 @@
+.modal-header{
+  background-color: #1957A9;
+}
+
+.heading{
+  color: aliceblue;
+}
+
+.close{
+  color: aliceblue;
+}
+
+.mandatory{
+  color:red;
+}
+
+.warn-msg {
+  display:block;
+  color: #ff0008;
+  margin-bottom: 10px;
+}
+
+.dropdownn{
+  border-width: 1px;
+  box-shadow: none;
+  padding: 10px 12px;
+  transition: none;
+  height: 3.692rem;
+}
+
+.btn{
+  background-color: #1957A9;
+  color:white;
+}
+
+.selected-input {
+  outline: none;
+  border: 1px solid #347ddd;
+}
+
+.close:focus {
+  opacity: 1 !important;
+}
+
+.form-control{
+  font-size: 12px;
+}
+
+.form-select{
+  font-size: 12px;
+}

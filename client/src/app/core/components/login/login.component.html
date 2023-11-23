@@ -1,0 +1,69 @@
+<div class="be-splash-screen">
+  <div class="be-wrapper be-login">
+    <div class="be-content">
+      <div class="main-content container-fluid">
+        <div class="splash-container">
+          <div class="card card-border-color card-border-color-primary">
+            <div class="card-header"><img class="logo-img" src="assets/img/buddy-inno-logo2-04.png" alt="logo"
+                ><span class="splash-description">Please enter your user information.</span>
+            </div>
+            <div class="card-body">
+              <form [formGroup]="userLoginForm">
+                <div class="form-group">
+                  <input class="form-control" id="email" type="email" name="email" placeholder="Enter email"
+                    formControlName="email">
+                  <div class="invalid-feedback" *ngIf="
+                    userLoginForm.get('email').invalid &&
+                    (userLoginForm.get('email')?.touched ||
+                      userLoginForm.get('email')?.dirty)
+                  ">
+                    <h6>
+                      <span class="warn-msg" *ngIf="userLoginForm.get('email')?.errors?.['required']"><strong>Email is
+                        required</strong></span>
+                      <span class="warn-msg" *ngIf="userLoginForm.get('email')?.errors?.['pattern']"><strong>Please enter a
+                        valid email</strong></span>
+                    </h6>
+                  </div>
+                </div>
+
+                <div class="form-group input-group-md inner-addon right-addon">
+                  <div class="password-wrapper">
+                    <input [type]="showPasswordOnPress ? 'text' : 'password'" class="form-control" id="password"
+                      placeholder="Password" formControlName="password" />
+                    <div (click)="showPasswordOnPress = !showPasswordOnPress"
+                      *ngIf="userLoginForm.get('password').value.length">
+                      <span class="password-icon" [class.hide]="showPasswordOnPress">
+                        <em class="icon mdi mdi-eye"></em>
+                      </span>
+                      <span class="password-icon" [class.hide]="!showPasswordOnPress">
+                        <em class="icon mdi mdi-eye-off"></em>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="invalid-feedback"
+                    *ngIf="userLoginForm.get('password').invalid && (userLoginForm.get('password')?.touched || userLoginForm.get('password')?.dirty)">
+                    <h6>
+                      <span class="warn-msg" *ngIf="userLoginForm.get('password')?.errors?.['required']"><strong>Password is
+                        required</strong></span>
+                      <span class="warn-msg" *ngIf="userLoginForm.get('password')?.errors?.['pattern']"><strong>Password should
+                        be of 8-20 characters, containing at least one uppercase and lowercase with special
+                        characters</strong></span>
+                    </h6>
+                  </div>
+                </div>
+
+                <div class="form-group row login-tools">
+                  <div class="col-12 login-forgot-password"><a [routerLink]="['/forgot_password']"
+                      class="float-right mt-2">Forgot Password?
+                    </a></div>
+                </div>
+                <div class="form-group login-submit" type="submit"><button class="btn btn-primary btn-xl"
+                    [disabled]="!userLoginForm.valid || (submitted)" (click)="userLogin()">Login</button></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

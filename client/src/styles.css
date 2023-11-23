@@ -1,0 +1,187 @@
+/* You can add global styles to this file, and also import other style files */
+/* .accordion-item{
+  border: none !important;
+}
+
+.accordion{
+  --bs-accordion-btn-icon-width : 1rem !important;
+  --bs-accordion-active-bg: none !important;
+  --bs-accordion-btn-focus-border-color : none !important;
+  --bs-accordion-active-color : none !important;
+  --bs-accordion-btn-focus-box-shadow : none !important;
+}
+.accordion-button:focus{
+  border-color: none !important;
+}
+
+.accordion-body{
+  padding-left: 0px !important;
+  padding-top: 10px !important;
+}
+.autocomplete-container{
+  box-shadow: 0.3px 1px 2px #a9a9a9 !important;
+}
+
+.autocomplete-container .input-container input{
+  padding-right: 30px !important;
+  color: #000000 !important;
+  font-size: 13px !important;
+  box-shadow: none !important;
+}
+
+.theme-green .bs-datepicker-head {
+  background-color: #104472 !important;
+}
+
+.theme-green .bs-datepicker-body table td span.selected{
+  background-color: #104472 !important;
+}
+
+.ngx-pagination .current{
+  background: #104472 !important;
+}
+
+.bs-datepicker-body table td :hover{
+  background-color: #104472 !important;
+  color:aliceblue !important;
+}
+
+#page-topbar {
+  top: 0px !important;
+}
+
+.modal-backdrop{
+  z-index: 0 !important;
+}
+
+.vertical-menu{
+  z-index: 0 !important;
+}
+
+.badge-danger {
+  background-color: #d21919 !important;
+}
+
+.badge-success {
+  background-color: #07831a !important;
+}
+
+.bs-datepicker-body table td span.disabled, .bs-datepicker-body table td.disabled span:hover{
+  background-color: transparent !important;
+  color: #a9a9a9 !important;
+} */
+
+.accordion-item{
+  border: none !important;
+
+}
+
+.accordion{
+  --bs-accordion-btn-icon-width : 1rem !important;
+  --bs-accordion-active-bg: none !important;
+  --bs-accordion-btn-focus-border-color : none !important;
+  --bs-accordion-active-color : none !important;
+  --bs-accordion-btn-focus-box-shadow : none !important;
+
+}
+.accordion-button:focus{
+  border-color: none !important;
+}
+
+.accordion-body{
+  padding-left: 0px !important;
+  padding-top: 10px !important;
+}
+.side{
+  color: brown !important;
+  background-color: rgb(0, 255, 13) !important;
+}
+
+.autocomplete-container{
+  border-width: 1px !important;
+border-top-color: #bdc0c7 !important;
+}
+
+.autocomplete-container .input-container input{
+  border-width: 1px;
+/* border-top-color: #bdc0c7; */
+box-shadow: none;
+padding: 10px 12px;
+font-size: 1rem !important;
+transition: none;
+height: 3.692rem;
+display: block;
+width: 100%;
+font-weight: 400;
+line-height: 1.428571;
+color: #404040;
+background-color: #fff;
+background-clip: padding-box;
+border: 1px solid #d5d8de;
+border-radius: 2px;
+}
+
+.accordion-button {
+  background-color: #F5F5F5;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #F5F5F5;
+}
+
+.bs-datepicker-body table td :hover{
+  background-color: #1957A9 !important;
+  color:aliceblue !important;
+}
+
+.autocomplete-container{
+  box-shadow: 0.3px 1px 2px #a9a9a9 !important;
+}
+
+.autocomplete-container .input-container input{
+  padding-right: 30px !important;
+  color: #000000 !important;
+  font-size: 13px !important;
+}
+
+.theme-green .bs-datepicker-head {
+  background-color: #1957A9 !important;
+}
+
+.theme-green .bs-datepicker-body table td span.selected{
+  background-color: #1957A9 !important;
+}
+
+.bs-datepicker-body table td :hover{
+  background-color: #1957A9 !important;
+  color:aliceblue !important;
+}
+
+.bs-datepicker-body table td span.disabled, .bs-datepicker-body table td.disabled span:hover{
+  background-color: transparent !important;
+  color: #a9a9a9 !important;
+}
+
+.be-top-header .navbar-nav > li.dropdown .dropdown-menu {
+  margin-top: 27px !important;
+}
+
+.be-left-sidebar .sidebar-elements > li > a:hover > span {
+  color: #1957A9 !important;
+}
+
+.ngb-modal-window{
+  z-index: 0 !important;
+}
+
+.modal-backdrop {
+  z-index: 1050 !important;
+}
+
+.modal-header{
+  font-size: 18px !important;
+}
+
+.modal-open{
+  padding-right: 0px !important;
+}

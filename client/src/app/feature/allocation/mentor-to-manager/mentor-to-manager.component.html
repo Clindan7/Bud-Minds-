@@ -1,0 +1,58 @@
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+  <li [ngbNavItem]="1">
+    <!-- <a ngbNavLink (click)="assignedMentors()">Assigned mentors</a> -->
+    <ng-template ngbNavContent>
+
+      <div class="mt-3">
+        <div>
+          <div class="row" *ngFor="let number of deallocate">
+            <div id="list-example" class="list-group">
+              <a class="list-group-item  mb-2">
+                <div class="custom-control custom-checkbox">
+                  <input #check type="checkbox" value="{{number.userId}}" class="custom-control-input"
+                    id="customCheck1.{{number.userId}}" (change)="onCheckboxChange($event,number.userId)">
+                  <label class="custom-control-label" for="customCheck1.{{number.userId}}">{{number.firstName}}</label>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <p *ngIf="deallocate?.length==0" style="text-align: center;">No mentors allocated</p>
+        <button class="btn btn-info btn-sm" (click)="deallocateMentors()" type="submit" [hidden]="deallocate?.length==0"
+          [disabled]="newArray.length==0">
+          <strong>Remove</strong>
+        </button>
+        <div>
+        </div>
+      </div>
+
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="2">
+    <!-- <a ngbNavLink (click)="totalMentors()">Unassigned mentors</a> -->
+    <ng-template ngbNavContent>
+      <div>
+        <div class="row" *ngFor="let number of allocate">
+          <div id="list-example" class="list-group">
+            <a class="list-group-item  mb-2">
+              <div class="custom-control custom-checkbox">
+                <input #check type="checkbox" value="{{number.userId}}" class="custom-control-input"
+                  id="customCheck.{{number.userId}}" (change)="onCheckboxChange($event,users=number.userId)">
+
+                <label class="custom-control-label" for="customCheck.{{number.userId}}">{{number.firstName}}</label>
+              </div>
+            </a>
+          </div>
+        </div>
+        <p *ngIf="allocate?.length==0" style="text-align: center;">All mentors are allocated</p>
+        <button class="btn btn-info btn-sm" *ngIf="allocate.length" (click)="allocateMentors()" type="submit"
+          [hidden]="allocate?.length==0" [disabled]="newArray.length==0">
+          <strong>Assign</strong>
+        </button>
+      </div>
+
+    </ng-template>
+  </li>
+</ul>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>

@@ -1,0 +1,188 @@
+<div class="modal-header modal-header-colored">
+  <h4 class="heading" *ngIf="!updateMode"><strong>Schedule Session</strong></h4>
+  <h4 class="heading" *ngIf="updateMode"><strong>Edit Session</strong></h4>
+  <button
+  type="button"
+  class="close waves-effect waves-light"
+  data-dismiss="modal"
+  aria-label="Close"
+  (click)="close()"
+>
+  <span aria-hidden="true">&times;</span>
+</button>
+</div>
+<form [formGroup]="sessionForm" autocomplete="off">
+<div class="modal-body form">
+
+  <div class="form-group">
+    <label for="batch">Training<span class="mandatory">*</span></label>
+    <select class="form-select mb-3 dropdownn" formControlName="training" (focus)="onInputFocus($event)"
+    (blur)="onInputBlur($event)" (change)="getStartandEndDate()">
+      <option *ngIf="!updateMode" disabled selected value="">
+        Select Training
+      </option>
+      <ng-container *ngFor="let training of trainings"
+      >
+      <option *ngIf="!checkEndDateBefore(training.trainingEndDate)" value="{{ training.trainingId }}"
+      >
+        {{ training.title }}
+      </option>
+    </ng-container>
+     </select>
+      <h6>
+        <span
+          class="warn-msg mb-8"
+          *ngIf="
+            (sessionForm.get('training')?.invalid &&
+            sessionForm.get('training')?.touched) ||
+            sessionForm.get('training').value == '0'
+          "
+        >
+          Training is required</span
+        >
+      </h6>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        type="text"
+        id="description"
+        class="form-control"
+        placeholder="Enter Description"
+        formControlName="description"
+        rows="3"
+      ></textarea>
+      <div class="">
+        <h6>
+          <span
+            class="warn-msg"
+            *ngIf="sessionForm.get('description')?.errors?.['maxlength']"
+            >Maximum allowed character is 250</span
+          >
+        </h6>
+        <h6>
+          <span
+            class="warn-msg mb-2"
+            *ngIf="sessionForm.get('description')?.errors?.['pattern']"
+            >White spaces are not allowed as the first and final
+            character for input and not more than one space is
+            allowed between words.</span
+          >
+        </h6>
+      </div>
+    </div>
+
+    <label for="sessionStart">Start Date and Time<span class="mandatory">*</span></label>
+    <div class="form-group date-time-picker">
+      
+      <input
+        autocomplete="off"
+        class="form-control date"
+        name="sessionStart"
+        formControlName="sessionStart"
+        placeholder="Enter Start Date"
+        #dp="bsDatepicker"
+        bsDatepicker
+        [(bsValue)]="sessionStart"
+        [bsConfig]="{ isAnimated: true,dateInputFormat: 'YYYY-MM-DD', showWeekNumbers: false , selectFromOtherMonth: true }"
+        [minDate]="minDate"
+        [maxDate]="maxDate"
+        (keydown)="$event.preventDefault()"
+        (bsValueChange)="start()"
+      />
+      <div class="">
+        <h6>
+          <span
+            class="warn-msg mb-2"
+            *ngIf="sessionForm.get('sessionStart').invalid && (sessionForm.get('sessionStart')?.touched ||
+            sessionForm.get('sessionStart')?.dirty)
+            ||  sessionForm.get('sessionStart').value == '0'"
+            >Start Date is required</span
+          >
+        </h6>
+      </div>
+      <ngb-timepicker [(ngModel)]="time" formControlName="time" [hourStep]="1" [minuteStep]="1" (keydown)="$event.preventDefault()"></ngb-timepicker>
+    </div>
+    
+    <label for="sessionEnd">End Date and Time<span class="mandatory">*</span></label>
+    <div class="form-group date-time-picker">
+      
+      <input
+      autocomplete="off"
+      class="form-control date"
+      name="sessionEnd"
+      formControlName="sessionEnd"
+      placeholder="Enter End Date"
+      #dp="bsDatepicker"
+      bsDatepicker
+      [(bsValue)]="sessionEnd"
+      [bsConfig]="{ isAnimated: true,dateInputFormat: 'YYYY-MM-DD', showWeekNumbers: false , selectFromOtherMonth: true }"
+      [minDate]="sessionStart"
+      [maxDate]="maxDate"
+      (keydown)="$event.preventDefault()"
+    />
+    <div class="">
+      <h6>
+        <span
+          class="warn-msg mb-2"
+          *ngIf="sessionForm.get('sessionEnd').invalid && (sessionForm.get('sessionEnd')?.touched ||
+          sessionForm.get('sessionEnd')?.dirty)
+          ||  sessionForm.get('sessionEnd').value == '0'"
+          >End Date is required</span
+        >
+      </h6>
+    </div>
+    <ngb-timepicker [(ngModel)]="endtime" formControlName="endtime" [hourStep]="1" [minuteStep]="1" (keydown)="$event.preventDefault()"></ngb-timepicker>
+  </div>
+
+  <div class="form-group">
+    <label for="trainer">Trainer<span class="mandatory">*</span></label>
+    <div class="input-group">
+      <select class="form-select dropdownn width" formControlName="trainer" (focus)="onInputFocus($event)"
+      (blur)="onInputBlur($event)">
+        <option *ngIf="!updateMode" disabled selected value="">Select Trainer</option>
+        <option *ngFor="let trainer of trainers" value="{{ trainer.userId }}">{{ trainer.userName }}</option>
+      </select>
+      <h6>
+        <span class="warn-msg mb-7" *ngIf="(sessionForm.get('trainer')?.invalid && sessionForm.get('trainer')?.touched) || sessionForm.get('trainer').value == '0'">Trainer is required</span>
+      </h6>
+
+    </div>
+  </div>
+
+
+  <div *ngIf="!updateMode" class="form-group">
+    <label for="group">Group<span class="mandatory">*</span></label>
+    <div class="input-group">
+      <select class="form-select dropdownn width" formControlName="group" (focus)="onInputFocus($event)"
+      (blur)="onInputBlur($event)">
+        <option *ngIf="!updateMode" disabled selected value="">Select Group</option>
+        <option *ngFor="let group of groups" value="{{ group.joinerGroupId }}">{{ group.joinerGroupName }}</option>
+      </select>
+      <h6>
+        <span class="warn-msg mb-7" *ngIf="(sessionForm.get('group')?.invalid && sessionForm.get('group')?.touched) || sessionForm.get('group').value == '0'">Group is required</span>
+      </h6>
+
+    </div>
+
+  </div>
+    </div>
+
+<div class="modal-footer">
+  <button class="btn modal-close primary-color search-btn-width btn-xl" type="submit"
+    *ngIf="!updateMode"
+    [disabled]="!sessionForm.valid || (submitted)"
+    (click)="createSession()"
+  >
+    Add
+  </button>
+  <button class="btn modal-close primary-color search-btn-width btn-xl" type="submit"
+    *ngIf="updateMode"
+    [disabled]="!sessionForm.valid || (submitted) "
+    (click)="updateSession()"
+  >
+    Update
+  </button>
+</div>
+</form>

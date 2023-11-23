@@ -1,0 +1,100 @@
+  <div class="modal-header modal-header-colored">
+    <h4 class="heading" *ngIf="!updateMode"><strong>Create Group</strong></h4>
+    <h4 class="heading" *ngIf="updateMode"><strong>Edit Group</strong></h4>
+    <button
+      type="button"
+      class="close waves-effect waves-light"
+      data-dismiss="modal"
+      aria-label="Close"
+      (click)="activeModal.close('cancel')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="groupForm" autocomplete="off">
+  <div class="modal-body form">
+
+      <div class="form-group pt-2">
+        <label for="groupName">Group Name<span class="mandatory">*</span></label>
+        <input
+          type="text"
+          id="groupName"
+          class="form-control"
+          placeholder="Enter Group Name"
+          formControlName="groupName"
+        />
+        <div class="">
+          <h6>
+            <span
+              class="warn-msg mb-2"
+              *ngIf="groupForm.get('groupName')?.touched &&
+              groupForm.get('groupName')?.errors?.['required']"
+              >Group name is required</span
+            >
+          </h6>
+          <h6>
+            <span
+              class="warn-msg"
+              *ngIf="groupForm.get('groupName')?.errors?.['maxlength']"
+              >Maximum allowed character is 20</span
+            >
+          </h6>
+          <h6>
+            <span
+              class="warn-msg mb-2"
+              *ngIf="groupForm.get('groupName')?.errors?.['pattern']"
+              >Only alphabets and white spaces are allowed and white
+              spaces are not allowed as the first and final character
+              for input and not more than one space is allowed between
+              words.</span
+            >
+          </h6>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="batch">Batch<span class="mandatory">*</span></label>
+        <select class="form-select mb-3 dropdownn" formControlName="batch" (focus)="onInputFocus($event)"
+        (blur)="onInputBlur($event)">
+          <option *ngIf="!updateMode" disabled selected value="">
+            Select Batch
+          </option>
+          <option
+            *ngFor="let batch of batches"
+            value="{{ batch.joinerBatchId }}"
+          >
+            {{ batch.joinerBatchName }}
+          </option>
+        </select>
+          <h6>
+            <span
+              class="warn-msg mb-8"
+              *ngIf="
+                (groupForm.get('batch')?.invalid &&
+                  groupForm.get('batch')?.touched) ||
+                groupForm.get('batch').value == '0'
+              "
+            >
+              Batch is required</span
+            >
+          </h6>
+        </div>
+      </div>
+
+  <div class="modal-footer">
+    <button class="btn modal-close primary-color search-btn-width btn-xl" type="submit"
+      *ngIf="!updateMode"
+      [disabled]="!groupForm.valid || (submitted)"
+      (click)="createGroup()"
+    >
+      Add
+    </button>
+    <button class="btn modal-close primary-color search-btn-width btn-xl" type="submit"
+      *ngIf="updateMode"
+      [disabled]="!groupForm.valid || (submitted)"
+      (click)="updateGroup()"
+    >
+      Update
+    </button>
+  </div>
+</form>

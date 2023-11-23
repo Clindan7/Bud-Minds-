@@ -1,0 +1,23 @@
+.search-btn-margin-top{
+  margin-top : 2.165rem !important
+}
+
+.btnn{
+  background-color: #1957A9;
+  color: white;
+  height: 42px;
+  width:100px;
+}
+
+.dropdown-item{
+  cursor: pointer;
+}
+
+.name{
+  font-size:14px !important;
+  color:rgb(90, 89, 89) !important;
+}
+.scroll{
+  max-height: 30vh;
+  overflow-y: scroll;
+}

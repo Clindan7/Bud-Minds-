@@ -1,0 +1,217 @@
+<div class="modal-header modal-header-colored">
+  <h4 class="heading" *ngIf="!updateMode">
+    <strong>{{ title }}</strong>
+  </h4>
+  <h4 class="heading" *ngIf="updateMode">
+    <strong>{{ title }}</strong>
+  </h4>
+  <button
+    type="button"
+    class="close waves-effect waves-light white-close"
+    data-dismiss="modal"
+    aria-label="Close"
+    (click)="activeModal.close('cancel')"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form [formGroup]="userForm" autocomplete="off">
+  <div class="modal-body form">
+    <div class="form-group pt-2">
+      <label for="firstName">First Name<span class="mandatory">*</span></label>
+      <input
+        type="text"
+        formControlName="firstName"
+        placeholder="Enter First Name"
+        class="form-control"
+        autocomplete="off"
+      />
+
+      <div
+        class="invalid-feedback"
+        *ngIf="
+          userForm.get('firstName').invalid &&
+          (userForm.get('firstName')?.touched ||
+            userForm.get('firstName')?.dirty)
+        "
+      >
+        <h6>
+          <span
+            class="warn-msg"
+            *ngIf="userForm.get('firstName')?.errors?.['required']"
+            >First Name is required</span
+          >
+          <span
+            class="warn-msg"
+            *ngIf="userForm.get('firstName')?.errors?.['pattern']"
+            >Only alphabets and white spaces are allowed and white spaces are
+            not allowed as the first and final character for input and not more
+            than one space is allowed between words.</span
+          >
+          <span
+            class="warn-msg"
+            *ngIf="userForm.get('firstName')?.errors?.['maxlength']"
+            >Maximum allowed character is 50</span
+          >
+        </h6>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name<span class="mandatory">*</span></label>
+      <input
+        type="text"
+        formControlName="lastName"
+        placeholder="Enter Last Name"
+        class="form-control"
+        autocomplete="off"
+      />
+
+      <div
+        class="invalid-feedback"
+        *ngIf="
+          userForm.get('lastName').invalid &&
+          (userForm.get('lastName')?.touched || userForm.get('lastName')?.dirty)
+        "
+      >
+        <h6>
+          <span
+            class="warn-msg"
+            *ngIf="userForm.get('lastName')?.errors?.['required']"
+            >Last Name is required</span
+          >
+          <span
+            class="warn-msg"
+            *ngIf="userForm.get('lastName')?.errors?.['pattern']"
+            >Only alphabets and white spaces are allowed and white spaces are
+            not allowed as the first and final character for input and not more
+            than one space is allowed between words.</span
+          >
+          <span
+            class="warn-msg"
+            *ngIf="userForm.get('lastName')?.errors?.['maxlength']"
+            >Maximum allowed character is 20</span
+          >
+        </h6>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email Address<span class="mandatory">*</span></label>
+      <input
+        type="email"
+        formControlName="email"
+        placeholder="Enter Email ID"
+        class="form-control"
+        autocomplete="off"
+        [readonly]="updateMode && user1?.userRole != 0"
+      />
+
+      <div
+        class="invalid-feedback"
+        *ngIf="
+          userForm.get('email').invalid &&
+          (userForm.get('email')?.touched || userForm.get('email')?.dirty)
+        "
+      >
+        <h6>
+          <span
+            class="warn-msg"
+            *ngIf="userForm.get('email')?.errors?.['required']"
+            >Email is required</span
+          >
+          <span
+            class="warn-msg"
+            *ngIf="userForm.get('email')?.errors?.['pattern']"
+            >Please enter a valid email</span
+          >
+        </h6>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="employeeId"
+        >Employee ID<span class="mandatory">*</span></label
+      >
+      <input
+        type="text"
+        formControlName="employeeId"
+        placeholder="Enter Employee ID"
+        class="form-control"
+        autocomplete="off"
+        [readonly]="updateMode && user1?.userRole != 0"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="
+          userForm.get('employeeId').invalid &&
+          (userForm.get('employeeId')?.touched ||
+            userForm.get('employeeId')?.dirty)
+        "
+      >
+        <h6>
+          <span
+            class="warn-msg"
+            *ngIf="userForm.get('employeeId')?.errors?.['required']"
+            >Employee ID is required</span
+          >
+          <span
+            class="warn-msg"
+            *ngIf="userForm.get('employeeId')?.errors?.['pattern']"
+            >Employee ID should be in digits.
+          </span>
+          <span
+            class="warn-msg"
+            *ngIf="userForm.get('employeeId')?.errors?.['maxlength']"
+            >Maximum allowed digits is 10.
+          </span>
+        </h6>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="department">Department<span class="mandatory">*</span></label>
+      <select
+        class="form-select dropdownn"
+        id="exampleFormControlSelect1"
+        formControlName="department"
+        (focus)="onInputFocus($event)"
+      (blur)="onInputBlur($event)"
+      >
+        <option disabled selected value="" style="font-size: 12px">Select Department</option>
+        <option value="1" style="font-size: 14px !important">Software</option>
+        <option value="2" style="font-size: 14px !important">QA</option>
+      </select>
+      <h6>
+        <span
+          class="warn-msg mb-8"
+          *ngIf="
+            (userForm.get('department')?.invalid &&
+              userForm.get('department')?.touched) ||
+            userForm.get('department').value == '0'
+          "
+          >Department is required</span
+        >
+      </h6>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      class="btn modal-close primary-color search-btn-width btn-xl"
+      type="submit"
+      *ngIf="!updateMode"
+      [disabled]="!userForm.valid || submitted"
+      (click)="create()"
+    >
+      Register
+    </button>
+
+    <button
+      class="btn modal-close primary-color search-btn-width btn-xl"
+      type="submit"
+      *ngIf="updateMode"
+      [disabled]="!userForm.valid || submitted"
+      (click)="edit()"
+    >
+      Update
+    </button>
+  </div>
+</form>
+
+<div class="modal-overlay"></div>

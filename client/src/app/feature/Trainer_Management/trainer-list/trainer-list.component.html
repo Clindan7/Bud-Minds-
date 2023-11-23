@@ -1,0 +1,20 @@
+<div class="page-head">
+  <h2 class="page-head-title">Trainer Management</h2>
+
+  <nav aria-label="breadcrumb" role="navigation">
+    <ol class="breadcrumb page-head-nav">
+      <li class="breadcrumb-item active"><a href="/dashboard">Home</a></li>
+      <li class="breadcrumb-item"><a href="/trainers">Trainers</a></li>
+      <li class="breadcrumb-item active">List</li>
+    </ol>
+  </nav>
+
+</div>
+
+<div class="main-content container-fluid">
+
+  <app-import-export [userrole]="userrole"></app-import-export>
+
+  <app-user-list [userData]="searchedUserData" [userrole]="userrole"></app-user-list>
+
+</div>

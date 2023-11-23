@@ -1,0 +1,174 @@
+<div class="modal-header modal-header-colored">
+    <h4 class="heading" *ngIf="!updateMode"><strong>Create Task</strong></h4>
+    <h4 class="heading" *ngIf="updateMode"><strong>Edit Task</strong></h4>
+    <button
+    type="button"
+    class="close waves-effect waves-light"
+    data-dismiss="modal"
+    aria-label="Close"
+    (click)="close()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
+  <form [formGroup]="TaskForm" autocomplete="off">
+  <div class="modal-body form">
+  
+    <div class="form-group">
+      <label for="batch">Training<span class="mandatory">*</span></label>
+      <select class="form-select mb-3 dropdownn" formControlName="training" (focus)="onInputFocus($event)" (blur)="onInputBlur($event)" (change)="getStartandEndDate()">
+        <option *ngIf="!updateMode"   disabled selected value="">
+          Select Training
+        </option>
+        <ng-container *ngFor="let training of trainings"
+        >
+        <option value="{{ training.trainingId }}"
+        >
+          {{ training.title }}
+        </option>
+      </ng-container>
+      </select>
+        <h6>
+          <span
+            class="warn-msg mb-8"
+            *ngIf="
+              (TaskForm.get('training')?.invalid &&
+              TaskForm.get('training')?.touched) ||
+              TaskForm.get('training').value == '0'
+            "
+          >
+            Training is required</span
+          >
+        </h6>
+      </div>
+
+      <div class="form-group">
+        <label for="taskDescription">Description<span class="mandatory">*</span></label>
+        <textarea
+          type="text"
+          id="taskDescription"
+          class="form-control"
+          placeholder="Enter Description"
+          formControlName="taskDescription"
+          rows="3"
+          >
+        </textarea>
+        <div class="">
+          <h6>
+            <span
+              class="warn-msg mb-2"
+              *ngIf="TaskForm.get('taskDescription')?.touched &&
+              TaskForm.get('taskDescription')?.errors?.['required']"
+              >Task description is required</span
+            >
+          </h6>
+          <h6>
+            <span
+              class="warn-msg"
+              *ngIf="TaskForm.get('taskDescription')?.errors?.['maxlength']"
+              >Maximum allowed character is 250</span
+            >
+          </h6>
+          <h6>
+            <span
+              class="warn-msg mb-2"
+              *ngIf="TaskForm.get('taskDescription')?.errors?.['pattern']"
+              >White spaces are not allowed as the first and final
+              character for input and not more than one space is
+              allowed between words.</span
+            >
+          </h6>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="taskName">Task name<span class="mandatory">*</span></label>
+        <input
+          type="text"
+          id="taskName"
+          class="form-control"
+          placeholder="Enter name"
+          formControlName="taskName"
+        />
+        <div class="">
+          <h6>
+            <span
+              class="warn-msg mb-2"
+              *ngIf="TaskForm.get('taskName')?.touched &&
+              TaskForm.get('taskName')?.errors?.['required']"
+              >Task name is required</span
+            >
+          </h6>
+          <h6>
+            <span
+              class="warn-msg"
+              *ngIf="TaskForm.get('taskName')?.errors?.['maxlength']"
+              >Maximum allowed character is 50</span
+            >
+          </h6>
+          <h6>
+            <span
+              class="warn-msg mb-2"
+              *ngIf="TaskForm.get('taskName')?.errors?.['pattern']"
+              >White spaces are not allowed as the first and final
+              character for input and not more than one space is
+              allowed between words.</span
+            >
+          </h6>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="taskStart">Start Date<span class="mandatory">*</span></label>
+        <input
+          autocomplete="off"
+          class="form-control date"
+          name="taskStart"
+          formControlName="taskStart"
+          placeholder="Enter Start Date"
+          #dp="bsDatepicker"
+          bsDatepicker
+          [(bsValue)]="taskStart"
+          [bsConfig]="{ isAnimated: true,dateInputFormat: 'YYYY-MM-DD', showWeekNumbers: false , selectFromOtherMonth: true }"
+          [minDate]="minDate"
+          (keydown)="$event.preventDefault()"
+          (bsValueChange)="start()"
+        />
+      </div>
+      <!-- <ngb-timepicker  ></ngb-timepicker> -->
+      <div class="form-group">
+        <label for="year">End Date<span class="mandatory">*</span></label>
+        <input
+        autocomplete="off"
+        class="form-control date"
+        name="taskEnd"
+        formControlName="taskEnd"
+        placeholder="Enter End Date"
+        #dp="bsDatepicker"
+        bsDatepicker
+        [(bsValue)]="taskEnd"
+        [bsConfig]="{ isAnimated: true,dateInputFormat: 'YYYY-MM-DD', showWeekNumbers: false , selectFromOtherMonth: true }"
+        [minDate]="taskStart"
+        (keydown)="$event.preventDefault()"
+      />
+    </div>
+      </div>
+  
+  <div class="modal-footer">
+    <button class="btn modal-close primary-color search-btn-width btn-xl" type="submit"
+    *ngIf="!updateMode"
+    (click)="createTask()"
+    [disabled]="!TaskForm.valid || (submitted)"
+    >
+      Add
+    </button>
+    <button class="btn modal-close primary-color search-btn-width btn-xl" type="submit"
+      *ngIf="updateMode"
+      [disabled]="!TaskForm.valid || (submitted) "
+      (click)="updateTask()"
+    >
+      Update
+    </button>
+  </div>
+  </form>
+  

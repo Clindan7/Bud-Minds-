@@ -1,0 +1,47 @@
+.upload{
+  cursor: pointer !important;
+}
+
+.file-over {
+  border: 2px dashed red;
+}
+
+.dropzone {
+  text-align: center !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.export {
+  text-align: center !important;
+  padding-top: 10px;
+  cursor: pointer;
+}
+
+.mdi-cloud-upload {
+  /* font-size: 4.615rem; */
+  color: #696767;
+}
+
+.icon {
+  background-color: #e6e6e6;
+  border-radius: 50%;
+  display: inline-block;
+  height: 100px;
+  width: 100px;
+  margin-bottom: 15px;
+  padding: 20px;
+  text-align: center;
+}
+
+.icon span {
+  font-size: 4.615rem;
+  color: #696767;
+}
+
+.btnn{
+  height: 42px;
+  background-color: #1957A9;
+  color:white;
+  width: 200px;
+}

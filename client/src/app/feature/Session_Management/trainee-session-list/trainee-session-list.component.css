@@ -1,0 +1,90 @@
+.search-btn-margin-top{
+    margin-top : 2.165rem !important
+  }
+  
+  .btnn{
+    height: 42px;
+    background-color: #1957A9;
+    color:white;
+    width: 100px;
+  }
+  
+  .dropdown-menu{
+    cursor: pointer;
+  }
+  
+  .x {
+    position: absolute;
+    right: 10px;
+    margin: auto;
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 5px;
+    padding-top: 22px;
+    padding-right: 20px;
+    color: gray;
+  }
+  
+  .form-control{
+    font-size: 1rem;
+  box-sizing: border-box;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  background-color: #fff;
+  color: #000000de;
+  width: 100%;
+  padding: 0 15px;
+  line-height: 40px;
+  height: 40px;
+  box-shadow: 0 1px 3px #0003,0 1px 1px #00000024,0 2px 1px -1px #0000001f;
+  position: relative;
+  overflow: visible;
+  height: 40px;
+  }
+  
+  .dropdownn{
+    font-size: 1rem;
+  box-sizing: border-box;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  background-color: #fff;
+  color: #716c6cde;
+  width: 100%;
+  padding: 0 15px;
+  line-height: 40px;
+  height: 40px;
+  box-shadow: 0 1px 3px #0003,0 1px 1px #00000024,0 2px 1px -1px #0000001f;
+  position: relative;
+  overflow: visible;
+  height: 40px;
+  }
+  
+  .material-icons{
+    margin-top: -4px;
+    font-size: 22px;
+  }
+  
+  .align{
+    padding-right: 40px;
+  }
+  
+  .name{
+    font-size: 14px !important;
+    color:rgb(87, 86, 86)
+  }
+  
+  .top{
+    margin-top:10px;
+  }
+  
+  .alignment{
+    margin-bottom: 1.538rem;
+  }
+  
+  .form-select{
+    font-size: 12px;
+  }
+  

@@ -1,0 +1,38 @@
+.modal-header{
+  background-color: #1957A9;
+}
+
+.heading{
+  color: aliceblue;
+}
+
+.close{
+  color: aliceblue;
+}
+
+.mandatory{
+  color:red;
+}
+
+.btn{
+  background-color: #1957A9;
+  color:white;
+}
+
+.invalid-feedback {
+  display: block !important;
+}
+
+.warn-msg {
+  display:block;
+  color: #ff0008;
+  margin-bottom: 10px;
+}
+
+.close:focus {
+  opacity: 1 !important;
+}
+
+.form-control{
+  font-size:13px;
+}

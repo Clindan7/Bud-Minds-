@@ -1,0 +1,25 @@
+.modal-header{
+  background-color: #1957A9;
+}
+
+.heading{
+  font-size: larger;
+  color: aliceblue;
+}
+
+.close{
+  color: aliceblue;
+}
+
+.button{
+  background-color: rgb(179, 175, 175);
+  color: white;
+  }
+
+.list-group-item{
+  border:none !important
+}
+
+.close:focus {
+  opacity: 1 !important;
+}
